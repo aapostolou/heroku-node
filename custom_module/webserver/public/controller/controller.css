@@ -1,0 +1,66 @@
+:root {
+  --vmin: 1vmin;
+  --vmax: 1vmax;
+}
+
+.fullscreen {
+  position: fixed;
+
+  top: 0;
+  right: 0;
+
+  margin: 10px;
+
+  border-radius: 5px;
+
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.controller {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+  grid-template-rows: auto 1fr auto;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "top top right"
+    "middle middle right"
+    "bottom bottom right";
+
+  position: fixed;
+
+  width: 100vmax;
+  width: calc(100 * var(--vmax));
+  height: 100vmin;
+  height: calc(100 * var(--vmin));
+
+  color: white;
+}
+@media screen and (orientation: portrait) {
+  .controller {
+    transform: translateX(calc(50vmin - 50vmax))
+      translateY(calc(50vmax - 50vmin)) rotate(90deg);
+    transform: translateX(calc(50 * var(--vmin) - 50 * var(--vmax)))
+      translateY(calc(50 * var(--vmax) - 50 * var(--vmin))) rotate(90deg);
+  }
+}
+
+.right {
+  grid-area: right;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.top {
+  grid-area: top;
+}
+
+.middle {
+  grid-area: middle;
+}
+
+.bottom {
+  grid-area: bottom;
+
+  display: flex;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
