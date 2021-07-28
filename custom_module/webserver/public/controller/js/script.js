@@ -55,4 +55,27 @@ window.addEventListener("load", () => {
   document
     .querySelector(".fullscreen")
     .addEventListener("click", toggleFullScreen);
+
+  // BUTTON
+  [...document.querySelectorAll("[data-button]")].forEach((button) => {
+    let action = button.dataset.button;
+
+    console.log(button);
+
+    ["mousedown", "touchstart"].forEach((event) => {
+      button.addEventListener(event, () => {
+        button.classList.add("is--active");
+      });
+    });
+    ["mouseup", "touchend"].forEach((event) => {
+      button.addEventListener(event, () => {
+        button.classList.remove("is--active");
+      });
+    });
+  });
+
+  // JOYSTICK
+  let joystick = new JOYSTICK({
+    canvas: document.querySelector("canvas.joystick")
+  });
 });
